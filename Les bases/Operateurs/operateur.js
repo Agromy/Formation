@@ -41,7 +41,7 @@ console.log(modulo);
 // Incrémentation (++ ajoute 1) 
 // Décrémentation (-- retire 1)
 let increment = 10;
-console.log("Incrémentation: " + increment++1);
+console.log("Incrémentation: " + increment++);
 console.log(increment)
 
 
@@ -49,7 +49,7 @@ console.log(increment)
 //Concatenation (+)
 let nom = "Federer";
 let prenom = "Roger";
-let concatenation = "je m'appelle" + prenom + " " + nom;
+let concatenation = "je m'appelle " + prenom + " " + nom;
 console.log(concatenation);
 
 let premierNombre = 5;
@@ -59,14 +59,14 @@ resultat = premierNombre + deuxiemeNombre; //ici le resultat donnera 515 car on 
 console.log(resultat);
 
 //le symbole + devant une variable la convertira en nombre
-resusltat = premierNombre + +deuxiemeNombre;
+resultat = premierNombre + +deuxiemeNombre;
 console.log(resultat);
 
 //Opérateurs de comparaison
 // Comparaison entre 2 variables : == (exemple c == b) ici il n'y a verification que de la valeur de la variable
 let c = 5;
 let d = 5;
-console.log(c == b);
+console.log(c == d);
 
 // Comparaison stricte entre 2 variable : === ici il y a vérification de la valeur et du type de la variable
 let e = 6;
@@ -155,7 +155,33 @@ console.log("valeur : " + maVariable);
 // Structure itérative ou boucles
 console.log("Boucle while");
 let resultWhile = 0;
-while (resultWhile <10){
+while (resultWhile <5){
     ++resultWhile;
     console.log(resultWhile);
 }
+
+console.log("Boucle do while");
+let doWhile = 0
+do{
+    doWhile--;
+    console.log(doWhile);
+} while (doWhile > -10);
+
+console.log("Boucle for");
+//zz est la variable qui sert de compteur
+for (let zz = 20; zz < 24; zz++){
+    console.log(zz);
+}
+
+//La boucle for of permet de parcourir des objets itérables
+console.log("Boucle for of");
+let array = ["Roger", "Novak", "Rafa"];
+for (const iterator of array) {
+    console.log(iterator);
+}
+
+// Meme chose que la boucle for of
+for (let ii = 0; ii < array.length; ii++) {
+    console.log(array[ii])
+}
+
