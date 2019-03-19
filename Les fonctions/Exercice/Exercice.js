@@ -23,6 +23,7 @@ function tablesort(zz) {
     let array2 = [];
     let array3 = [];
 
+ //foreach car il faut lire le tableau (cf methode dans les tableaux)
     zz.forEach(element => {
         if (typeof(element) == "string") {
             array1.push(element);
@@ -34,21 +35,3 @@ function tablesort(zz) {
     return array3
 }
 console.log(tablesort(array));
-
-// correction :
-let tablesort1 = function (zz) {
-    let arraystring = [];
-    let arraynumber = [];
-    let arrayresult = [];
-
-    zz.forEach(element => {
-        if (typeof (element) === string) {
-            arraystring.push(element);
-        } else {
-            arraynumber.push(element);
-        }
-    });
-    arrayresult.push(arraynumber, arraystring);
-
-    return arrayresult;
-}
