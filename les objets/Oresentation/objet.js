@@ -1,7 +1,7 @@
 'use strict'
 
 // Definition de l'objet
-let objet1 = {
+let Objet1 = {
     name: "Roger",
     firstName: "Federer",
     city: "Bâle",
