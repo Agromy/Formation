@@ -29,3 +29,16 @@ checkInput(input);
 
     }
 });
+
+// Faire une fonction qui vérifie que les 2 champs : password et confirmation password sont les memes
+
+let password = document.querySelector("#yourPassword");
+let confirmpassword = document.querySelector("#confirmYourPassword");
+let validate = document.querySelector ("#button1");
+
+validate.addEventListener("click", function(){
+    if (password.value === confirmpassword.value){
+    console.log(password.value, confirmpassword.value);
+    }
+    console.log(validate);
+});
