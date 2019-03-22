@@ -3,20 +3,20 @@
 'use strict'
 
 // Déclarer une variable :
-// Tois mots clefs :
+// Trois mots clefs :
 var nom = "Federer";
 let prenom = "Roger";
 const age = 37;
 
-// Type de données (ce qui est inscrit après le =)
-// Type string ou chaine de caractères : se déclare avec "" ou '' (les 2 premières)
-// Type Number ou nombre 
-// Type boolean 0 ou 1  et True ou False
-// Type Null (valeur null)
-// Type Undefined (la variable existe mais n'a pas de valeur)
-// Type Array ou tableau
+/* Type de données (ce qui est inscrit après le =) :
+ Type string ou chaine de caractères : se déclare avec "" ou '' (les 2 premières)
+ Type Number ou nombre 
+ Type boolean 0 ou 1  et True ou False
+ Type Null (valeur null)
+ Type Undefined (la variable existe mais n'a pas de valeur)
+ Type Array ou tableau */
 
-// Déclaration d'un nouvelle valeur des la variable nom et prénom
+// Déclaration d'un nouvelle valeur de la variable nom et prénom
 nom = "Paire";
 prenom = "Benoit";
 console.log(nom);
@@ -55,7 +55,6 @@ console.log(listPrenom);
 
 /* 
 *Lorsque l'on declare une variable avec le mot clef var, la variable sera accessible dans tout le script
-*
 */
 
 // var x = 1;
