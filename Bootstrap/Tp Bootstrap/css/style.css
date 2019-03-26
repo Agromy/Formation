@@ -1,0 +1,19 @@
+.socialicon{
+    width: 2rem;
+    height: 2rem;
+}
+
+#v-pills-home img {
+    width: 8%;
+    height: auto; 
+}
+
+h1 {
+   center;
+    color: rgb(137, 218, 57);
+    background-color: darkgray;
+}
+
+main {
+    width: 100vh; 
+}
