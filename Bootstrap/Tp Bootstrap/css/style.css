@@ -15,5 +15,14 @@ h1 {
 }
 
 main {
-    width: 100vh; 
+    background-color: rgb(143, 133, 127);
+    display: flex;
+    flex-grow: 1;
+    min-block-size: 80vh;
+}
+
+
+header {
+    position: sticky;
+top: 0;
 }
