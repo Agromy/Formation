@@ -9,6 +9,7 @@
   "author": "Agromy",
   "license": "ISC",
   "dependencies": {
+    "@tonno/dawan": "0.0.9",
     "nodemon": "^1.18.10"
   }
 }
