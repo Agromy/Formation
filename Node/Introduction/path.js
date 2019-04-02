@@ -31,4 +31,3 @@ console.log('Pour passer du dossier \x1b[32m%s\x1b[0m au dossier' + '\x1b[32m%s\
 
 console.log(path.resolve(__dirname, content_path, path.relative(content_path, img_path)));
 
-c
