@@ -1,0 +1,14 @@
+{% extends 'base.njk.html' %}
+
+{% block title %} Coucou {% endblock%}
+
+{% block content %}
+<div>
+    <a href=/hello/momo">momo</a>
+    <a href=/hello/plop">Plop</a>
+</div>
+<p>Hello {{name |title}}</p>
+
+<!-- interprétationd 'une variable par nunjucks : {{nomvariable}}-->
+
+{% endblock %}

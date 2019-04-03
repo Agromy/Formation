@@ -1,0 +1,29 @@
+<html>
+<head>
+    <!-- création de block -->
+    <title>{%block title%}Default title{%endblock%}</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="./public/css/style.css"/>
+
+</head>
+<body>
+<main>
+    <header>
+        <h1>Node <small> express</small></h1>
+        <nav style="margin: 20px 0; text-align: center">
+            <a href="/">Accueil</a> -
+            <a href="/old">Old accueil</a> -
+            <a href="/hello/marie">Coucou</a> -
+        </nav>
+    </header>
+    <section>
+       {%block content%}mon contenu{%endblock%}
+
+    </section>
+<footer>
+    <hr />
+    <p> formation node - Dawan nantes - avril 2019</p>
+</footer>
+</main>
+</body>
+</html>

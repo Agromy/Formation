@@ -11,8 +11,13 @@
   "license": "ISC",
   "dependencies": {
     "@tonno/dawan": "0.0.9",
+    "body-parser": "^1.18.3",
     "esm": "^3.2.22",
-    "nodemon": "^1.18.10"
+    "express": "^4.16.4",
+    "find-my-way": "^2.0.1",
+    "mongoose": "^5.4.21",
+    "nodemon": "^1.18.10",
+    "nunjucks": "^3.2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
