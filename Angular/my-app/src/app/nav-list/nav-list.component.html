@@ -1,0 +1,9 @@
+<div>
+    <h2>
+      My ToDO list :
+    </h2>
+    <ul>
+     <!--repete l'élément li pour chaque élément du tableau tasks--> 
+      <li *ngFor="let task of tasks">{{task.name}}</li>
+    </ul>
+  </div>
