@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+   
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval';script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <link rel="stylesheet" type="text/css" href="../css/index.css">
+        <title>Hello World</title>
+
+        <script>
+       
+        document.addEventListener('deviceready', function(){
+       let data= document.querySelector('#data');
+       let dataSaved= document.querySelector('#dataSaved');
+       let nom= document.querySelector('#nom');
+       let prenom= document.querySelector('#prenom');
+       let email= document.querySelector('#email');
+
+       if(localStorage.getItem('data')!== null){
+           data.value=localStorage.getItem('data');
+           dataSaved.innerText=`Hello ${data.value}`;
+       }
+
+       if(localStorage.getItem('user')!== null){
+           let obj = JSON.parse(localStorage.getItem('user'));
+            nom.value=obj.nom;
+            prenom.value=obj.prenom;
+            email.value= obj.email;
+       }
+
+       document.querySelector("#btn").addEventListener('touchend',function(){
+           localStorage.setItem('data', data.value);
+           dataSaved.innerText=`Hello ${data.value}`;
+
+           navigator.notification.alert('Data Saved!');
+
+       });
+       document.querySelector("#reset").addEventListener('touchend',function(){
+        localStorage.removeItem('data');
+        data.value='';
+        dataSaved.innerText='';
+        navigator.notification.alert('Data erased!');
+    });
+        document.querySelector("#saveUser").addEventListener('touchend',function(){
+            let obj = {
+                nom: nom.value,
+                prenom: prenom.value,
+                email: email.value
+            }
+
+            localStorage.setItem('user', JSON.stringify(obj)); 
+            navigator.notification.alert('Utilisateur enregristré!');
+    
+        });
+    });
+
+    </script>  
+    </head>
+    <body>
+        <div class="app">
+
+            <h1>Event</h1>
+            <p>
+            <a href="../index.html">i'll be back</a>
+            </p>
+
+            <section>
+                <div>
+                    <label>Name :</label> 
+                    <input type="text" name="data" id="data" value=""/>
+                </div>
+                <div>
+                    <button id="btn">save</button>
+                    <button id="reset">reset</button>
+                </div>
+
+                <p id="dataSaved"></p>
+
+                <hr />
+                <div class="bla">
+                <label :>Nom</label>
+                <input type="text" name="nom" id="nom" value=""/>
+
+                <label :>prenom</label>
+                <input type="text" name="prenom" id="prenom" value=""/>
+
+                <label :>email</label>
+                <input type="email" name="email" id="email" value=""/>
+                <button id="saveUser" class="btn">Save User</button>
+            </div>
+               
+         
+            </section>
+              
+
+         
+        </div>
+        <script type="text/javascript" src="../cordova.js"></script>
+     
+    </body>
+</html>

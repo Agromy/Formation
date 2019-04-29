@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+   
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval';script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <link rel="stylesheet" type="text/css" href="../css/index.css">
+        <title>Hello World</title>
+
+        <script>
+       
+        document.addEventListener('deviceready', function(){
+
+       let task= document.querySelector('#task');
+       let taskSaved= document.querySelector('#taskSaved');
+     
+
+       if(localStorage.getItem('tasks')!== null){
+           let obj = JSON.parse(localStorage.getItem('tasks'));
+            task.value=obj.nom;
+       }
+     
+
+       document.querySelector("#btn").addEventListener('touchend',function(){
+            let obj = {
+                task:task.value
+            }
+
+        localStorage.setItem('tasks', JSON.stringify(obj)); 
+        taskSaved.insertAdjacentHTML("beforeend", `tasklist : <ul><li>${task.value}</li></ul>`)
+        navigator.notification.alert('task saved!');
+    });
+    
+//reset task
+       document.querySelector("#reset").addEventListener('touchend',function(){
+        localStorage.removeItem('tasks');
+        task.value='';
+        taskSaved.innerText='';
+        navigator.notification.alert('Task erased!');
+    });
+    
+
+            localStorage.setItem('task', JSON.stringify(obj)); 
+            taskSaved.insertAdjacentHTML("beforeend", ` <ul><li>${task.value}</li></ul>`)
+            navigator.notification.alert('task saved!');
+    });
+
+    </script>  
+    </head>
+    <body>
+        <div class="app">
+
+            <h1>Event</h1>
+            <p>
+            <a href="../index.html">i'll be back</a>
+            </p>
+
+            <section>
+                <div>
+                    <label>Task:</label> 
+                    <input type="text" name="task" id="task" value=""/>
+                </div>
+                <div>
+                    <button id="btn">save</button>
+                    <button id="reset">reset</button>
+                </div>
+                <p id="taskSaved"></p>
+                </div>
+               
+            </section>
+              
+
+         
+        </div>
+        <script type="text/javascript" src="../cordova.js"></script>
+     
+    </body>
+</html>

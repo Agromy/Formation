@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+   
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval';script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:; connect-src 'self' https://jsonplaceholder.typicode.com/">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <link rel="stylesheet" type="text/css" href="../css/index.css">
+        <title>Hello World</title>
+
+        <script>
+
+// but = chercher des données à distance avec cordova
+let userList = document.querySelector("#users");
+
+function render (users){
+    console.log(users)
+    for (let user of users){
+        let li = document.createElement('li');
+        li.innerText=user.name;
+        userList.appendChild(li);
+    }
+}
+
+        
+ document.addEventListener('deviceready', function(){
+
+    fetch('https://jsonplaceholder.typicode.com/users')
+  .then(response => response.json())
+  .then(users => {render(users)});
+    });
+
+
+
+
+
+let modal = document.querySelector(".modal")
+
+userList.addEventListener('touchend',function(){
+animation.classList.add("slideUpward")
+
+
+});
+
+document.querySelector('#escape').addEventListener('touchend',function(){
+    modal.classList.add("none")
+});
+
+
+
+
+    </script>  
+    </head>
+    <body>
+        <div class="app">
+
+            <h1>API</h1>
+            <p>
+            <a href="../index.html">i'll be back</a>
+            </p>
+            <section>
+             <ul id="users" class="list"></ul> 
+            </section>
+        </div>
+
+        <section class="modal" display="none">
+            <p>Modal</p>
+            <div id="adress">
+                L'adresse est :
+            </div>
+
+
+            <button id="escape">Escape</button>
+        </section>
+
+
+        <script type="text/javascript" src="../cordova.js"></script>
+     
+    </body>
+</html>
+

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+   
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval';script-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src * data: content:;">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <link rel="stylesheet" type="text/css" href="../css/index.css">
+        <script src="https://maps.googleapis.com/maps/api/js?key=Your_API_Key"></script>
+        <title>Hello World</title>
+
+        <script>
+        
+        document.addEventListener('deviceready', function(){
+           
+            document.querySelector('#location').addEventListener('touchstart', function(){
+               document.querySelector("#message").innerText="Recherche en cours...";
+
+               let options = {timeout: 5000};
+//la premeire fonction anonyme du watch position est la function de succés et la deuxieme est la function en cas d'echec
+               navigator.geolocation.watchPosition(function(position){
+                document.querySelector("#message").innerText="";
+                document.querySelector("#latitude").innerText=position.coords.latitude;
+                document.querySelector("#longitude").innerText=position.coords.longitude;
+
+               }, function(error){
+                document.querySelector("#message").innerText= error.message;
+               }, options);
+            });
+
+        });
+
+
+        
+    </script>  
+    </head>
+    <body>
+        <div class="app">
+
+            <h1>geoloc</h1>
+            <p>
+            <a href="../index.html">i'll be back</a>
+            </p>
+
+            <section>
+               <div>
+                    <button id="location" class="btn">recuperer la position</button>  
+                    <p id="message"></p>
+
+               </div>
+<p><strong>Latitude :</strong><span id='latitude'></span></p>
+<p><strong>Longitude :</strong><span id='longitude'></span></p>
+
+               <div>
+
+                   <span id="map"></span>
+
+               </div>
+
+            </section>
+              
+
+         
+        </div>
+        <script type="text/javascript" src="../cordova.js"></script>
+     
+    </body>
+</html>

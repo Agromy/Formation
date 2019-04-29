@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,700,900" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="../css/index.css">
+        <link rel="stylesheet" type="text/css" href="../css/magic.css">
+        <title>To-Do List</title>
+    </head>
+
+    <script>
+        function save(data){
+            localStorage.setItem('tasks', JSON.stringify(data));
+        }
+
+        function render(data){
+            document.querySelector('#tasks').innerHTML = "";
+            for([index, task] of data.entries()) {
+                let li = document.createElement('li');
+                li.setAttribute('data-index', index);
+
+                let content = document.createTextNode(task);
+                li.appendChild(content);
+
+                li.addEventListener('touchend', function(){
+                        data.splice(this.dataset.index, 1);
+                        save(data);
+                        render(data);
+                });
+
+                document.querySelector('#tasks').appendChild(li);
+            }
+        }
+
+
+        document.addEventListener('deviceready', function(){
+            let tasks = [], 
+            task = document.querySelector('#task')
+
+           if(localStorage.getItem('tasks') !== null){
+               tasks = JSON.parse(localStorage.getItem('tasks'))
+               render(tasks)
+           }
+
+           document.querySelector('#addTask').addEventListener('touchend', function(){
+               if(task.value !== ''){
+                   tasks.push(task.value)
+                   task.value = ''
+                   save(tasks)
+                   render(tasks)
+               }
+           })
+        })
+
+    </script>
+    </head>
+    <body>
+        <div class="app deviceready">
+            <nav class="top-nav">
+                <a id="index-link" href="../index.html">bck</a>
+            </nav>
+            <section id="section-todo">
+                <p>Add new thing to do :</p>
+                <input type="text" name="task" id="task" placeholder="Add New Task" value=""/>
+                <button id="addTask">Add</button>
+                <ul id="tasks"></ul>
+            </section>
+         
+        </div>
+        <script type="text/javascript" src="../cordova.js"></script>
+    </body>
+</html>
+
+ 

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+   
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval';script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <link rel="stylesheet" type="text/css" href="../css/index.css">
+        <title>Hello World</title>
+
+        <script>
+
+            function getDateTime(){
+                let options={
+                    year:'numeric', month: 'long', day:'numeric', hour:'numeric', minute:'numeric', second: 'numeric'
+                };
+            let date = new Intl.DateTimeFormat('fr-fr',options);
+            return date.format(new Date());
+            }
+
+        document.addEventListener('deviceready', function(){
+
+   let networkState = navigator.connection.type;
+   let states = {};
+    states[Connection.UNKNOWN]  = 'Unknown connection';
+    states[Connection.ETHERNET] = 'Ethernet connection';
+    states[Connection.WIFI]     = 'WiFi connection';
+    states[Connection.CELL_2G]  = 'Cell 2G connection';
+    states[Connection.CELL_3G]  = 'Cell 3G connection';
+    states[Connection.CELL_4G]  = 'Cell 4G connection';
+    states[Connection.CELL]     = 'Cell generic connection';
+    states[Connection.NONE]     = 'No network connection';
+
+    document.querySelector("#connexion").innerText= states[networkState]
+
+
+// evenement pour mettre en arriere plan l'application
+    document.addEventListener('pause', function(){
+        document.querySelector('#background').innerText= getDateTime();
+    });
+    
+// evenement pour mettre au premier plan
+document.addEventListener('resume', function(){
+    document.querySelector('#foreground').innerText= getDateTime();
+});
+
+
+        });
+
+    </script>  
+    </head>
+    <body>
+        <div class="app">
+
+            <h1>Network</h1>
+            <p>
+            <a href="../index.html">i'll be back</a>
+            </p>
+
+            <section>
+                <p> Connexion :<span id="connexion"></span></p>
+                <p> Background :<span id="background"></span></p>
+                <p> Foreground :<span id="foreground"></span></p>
+         
+            </section>
+              
+
+         
+        </div>
+        <script type="text/javascript" src="../cordova.js"></script>
+     
+    </body>
+</html>

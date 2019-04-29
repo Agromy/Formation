@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+   
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval';script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <link rel="stylesheet" type="text/css" href="../css/index.css">
+        <title>Hello World</title>
+
+        <script> 
+
+     
+        document.addEventListener('deviceready', function(){
+         let nom = document.querySelector("#nom");
+         let prenom = document.querySelector("#prenom");
+         let record = document.querySelector("#record");
+         let file= null;
+
+
+         window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (directory){
+            // alert(directory.toURL()); //donne l'adresse du directory ou est le repertoire?
+             let options = {create: true} // ceci est un objet
+             //getfile va fabriquer le fichier formation si il n'existe pas deja
+             directory.getFile('user.json', options, function (localfile){
+                 file = localfile;
+
+                 file.file(function(f){
+                     let reader = new FileReader();
+                     reader.readAsText(f);
+
+                     reader.onloadend= function(){
+                         let obj= JSON.parse(this.result);
+                         nom.value=obj.nom;
+                         prenom.value=obj.prnom;
+                     }
+                 })
+             });
+         }, function (){
+             //error
+         });
+        
+
+            
+            record.addEventListener('touchend', function(){
+              
+                if(!file)return;
+                file.createWriter(function(fileWriter){
+                
+                    //binary large object
+                    let obj ={ nom: nom.value, prenom: prenom.value};
+                    let blob = new Blob([JSON.stringify(obj)], {type: 'application/json'}); //creer le contenu que je veux ajouter
+                    fileWriter.write(blob); 
+                    fileWriter.onwriteend=function(){ //pour savoir que l'écriture est terminée
+                        navigator.notification.alert("ecriture finie")
+                    };
+                },function(){
+                    navigator.notification.alert("Erreur d'écriture")
+                });
+            });          
+
+        })
+
+    </script>  
+    </head>
+    <body>
+        <div class="app">
+
+            <h1>Event</h1>
+            <p>
+            <a href="../index.html">i'll be back</a>
+            </p>
+
+            <section>
+                <div>
+                    <input name="nom" id="nom" type="text" value="">
+                    <input name="prenom" id="prenom" type="text" value="">
+                    <button id="record">record</button>
+                </div>      
+            </section>
+              
+
+         
+        </div>
+        <script type="text/javascript" src="../cordova.js"></script>
+     
+    </body>
+</html>

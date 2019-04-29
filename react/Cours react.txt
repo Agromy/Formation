@@ -1,0 +1,83 @@
+                                Cours react     :
+                                
+        LE HTML est interprété coté client (par le navigateur), c'est la structure (balises) de la page. EN HTML on a les classes et les attributs. Pour gérer le DOM
+        LE CSS est le style, l'habillage de la page
+        LE JS est l'interaction entre les objet de la page (les élément du Document Object Model) par le biais d'événnement                       
+                                
+         L'objet (abstrait ou reel) il a un comportement et un état:
+         -   Le comportement c'est les méthode de l'objet (les fonctions()
+         -   L'état c'est les attributs de l'objet       
+         
+         pour donner une structure à un objet on fait appelle à une classe. La classe est une structure de données de type référence.
+         
+         L'instance = l'objet.
+         
+         Une classe est une usine de fabrication d'objets.
+         
+         Manipuler l'objet :
+         Objet.attribut
+         Objet.méthode()    
+         
+         exemple : document.getElementById()           (ici document est l'objet et getElementById() est la méthode)
+         
+         var toto = function titi (px, py, ...){
+         this.p1 = py;
+         this.p2 = px
+         }
+         ici toto est l'objet et titi est la classe(cachée)
+         
+         EM6 a en plus :
+         les classe
+         import; export
+         () =>
+         let et const
+         map()
+         
+      REACT JS
+      
+      Créé par Facebook et Instagram depuis 2013 pour répondre à un probleme majeur sur le DOM (fil d'actualités et notifs) --> le DOM devient virtuel il gere des composants (1 composant est un objet du DOM, donc ici une balises) (Des Classe sous ES6)
+       architecture de flux. syntaxe en JSX ou JS. React est une bibliothèque pas un framework
+       cycle de vie des composant
+       
+       Architecture React,
+       ==> pas d'arborescence quand on fait from scratch (de presque rien) --> webpack ( point d'entrée )  --> index.html, app.js, package.json, webpack.config, nodes_modules (tout les modules node dont babel, etc...)
+       
+       Pour commencer à faire du react, il faut installer node.js pour pouvoir utiliser la commande "npm"
+       
+       Installation de react : dans cmd : entrer : npm install -g create-react-app
+       On initialise ensuite un projet react app avec la commande : npm init react-app my-app
+       
+       composant c'est (ex : <forms/>) :
+       - des états (des vues qui changent)
+       - des propiétés  (props)
+       
+       Création de composant : méthode à connaitre :
+       React.createClass (objet) créer un compsoat pour UI
+       React.renderComponent (comonent, container) générer le rendu du composant dans u container du DOM
+       un composant react doit dorcement avoir un methode render()
+       ex : <forms prop1={....}/>      ex plus parlant : les paniers dans les pages d'achat. C'est un compsant de la page qui reçoit des nouvelles props a chaques fois que j'effectue une action sur la page
+       
+       un composant react se définit par un state (ces props a un moment donné)
+       
+       initialisation de l'état initial : getInitialState({prop1:"blabla")
+       la modif des propiétés de l'état se fait grace à la methode this.setState({prop1:"dodo")}
+       le passage de propriétés peut se faire lors de l'instanciation du composant ou seront stockées dans l'objet this.props
+       
+       react donne une architecture dédiée en rupture avec le modele MVC, il se ocncentre sur la gestion du rendu de la vue
+       
+       On travaille avec une syntaxe JSX pour écrire le HTML dans les function return(...)
+       donc les clases="" deviennet className="" pareil pour les for="" ils deviennent des htmlFor="". Bien pensé à fermer toutes les balises en faisant />
+       et <button onclick="function()">envoyez</button> devient  un onClick={this.function}
+       
+       
+       Class Humain {
+       constructor (nom)   {}
+       this.nom =nom   ;
+       }
+        methode (blabla) {}
+        }
+
+       
+       Class bidule extend Humain{
+       super.nom
+       }

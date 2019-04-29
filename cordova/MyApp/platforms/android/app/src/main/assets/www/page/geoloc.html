@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+   <head>
+       <!--Ajout de script-src 'self' 'unsafe-inline' dans la première meta-->
+       <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; script-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src * data: content:;">
+       <meta name="format-detection" content="telephone=no">
+       <meta name="msapplication-tap-highlight" content="no">
+       <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+       <link rel="stylesheet" type="text/css" href="../css/index.css">
+       <link rel="stylesheet" type="text/css" href="../css/geoloc.css">
+       <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
+       <title>Geoloc</title>
+       <!-- à mettre toujours en cordova-->
+       <script>
+       document.addEventListener('deviceready', function(){
+           document.querySelector('#localisation').addEventListener('click', function(){
+               document.querySelector('#message').innerText = "Recherche en cours..."
+               //durée max sur laquelle il fait la recherche s'il n'a pas trouvé il y a une erreur
+               let options = {timeout:5000};                navigator.geolocation.watchPosition(function(position){
+                   document.querySelector('#message').innerText = "";
+                   document.querySelector('#latitude').innerText=position.coords.latitude;
+                   document.querySelector('#longitude').innerText=position.coords.longitude;                    var map = new ol.Map({
+                       target: 'map',
+                       layers: [
+                           new ol.layer.Tile({
+                           source: new ol.source.OSM()
+                           })
+                       ],
+                       view: new ol.View({
+                           center: ol.proj.fromLonLat([ position.coords.longitude,position.coords.latitude]),
+                           zoom: 12
+                       })
+                   });
+               }, function(error){
+                   document.querySelector('#message').innerText = error.message;
+               }, options);
+           });
+       });
+       </script>
+<!--pour ios on doit ajouter des trucs dans config.xml
+<config-edit target="NSLocationWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
+   <string>Necessaire</string>
+   </config-edit>-->
+   </head>
+   <body>
+       <div class="app">            <h1>Geoloc</h1>
+           <p>
+               <a href="../index.html">Retour</a>
+           </p>            
+           <section>
+               <div>
+                   <button id="localisation" class="btn">Récupérer la position</button>
+                   <p id = "message"></p>
+               </div>
+               <p><strong>Latitude:</strong><span id="latitude"></span></p>
+               <p><strong>Longitude:</strong><span id="longitude"></span></p>
+           </section>        
+        </div>        
+        <div id="map" class="map">
+        </div>        
+        <script type="text/javascript" src="../cordova.js"></script>    </body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+   
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval';script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <link rel="stylesheet" type="text/css" href="../css/index.css">
+        <title>Hello World</title>
+
+        <script>
+        // 3 types de dialogues : alert, confirm et prompt
+        // fonction alert les parametres : le texte, , le titre, button
+        document.addEventListener('deviceready', function(){
+         let content = document.querySelector("#content");
+         let write = document.querySelector("#write")
+
+         let file= null;
+//3 parametre : 1 le repertoire ou on va chercher le fichier dans le telephone, 2 est la fonction de succès, le 3eme l'erreur
+         window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (directory){
+             alert(directory.toURL()); //donne l'adresse du directory ou est le repertoire?
+             let options = {create: true} // ceci est un objet
+             //getfile va fabriquer le fichier formation si il n'existe pas deja
+             directory.getFile('formation.txt', options, function (localfile){
+                 file = localfile
+             });
+         }, function (){
+             //error
+         });
+         console.log("blabla")
+            
+            write.addEventListener('touchend', function(){
+                if(!file)return;
+                file.createWriter(function(fileWriter){
+                    fileWriter.seek(fileWriter.length);
+                    console.log("blabla1")
+                    //binary large object
+                    let blob = new Blob([content.value, "\n"], {type: 'text/plain'}); //creer le contenu que je veux ajouter
+                    console.log("blabla2")
+                    fileWriter.write(blob); //ajoute le contenu creer precedemment
+                    fileWriter.onwriteend=function(){ //pour savoir que l'écriture est terminée
+                        content.value=""; //on vide le texte area ou le caractere est saisi
+                        navigator.notification.alert("ecriture finie")
+                    };
+                },function(){
+                    navigator.notification.alert("Erreur d'écriture")
+                });
+            });
+        });
+
+    </script>  
+    </head>
+    <body>
+        <div class="app">
+
+            <h1>Event</h1>
+            <p>
+            <a href="../index.html">i'll be back</a>
+            </p>
+
+            <section>
+                <div>
+                    <textarea name="" id="content" cols="30" rows="10"></textarea>
+                </div>
+                <div>
+                        <button id="write">Ecricre</button>
+                    </div>
+            </section>
+              
+
+         
+        </div>
+        <script type="text/javascript" src="../cordova.js"></script>
+     
+    </body>
+</html>

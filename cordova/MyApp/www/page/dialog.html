@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+   
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval';script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <link rel="stylesheet" type="text/css" href="../css/index.css">
+        <title>Hello World</title>
+
+        <script>
+        // 3 types de dialogues : alert, confirm et prompt
+        // fonction alert les parametres : le texte, , le titre, button
+        document.addEventListener('deviceready', function(){
+            document.querySelector('#alert-btn').addEventListener('click',function(){
+    navigator.notification.alert('Mon vraiment est cool formateur', null, 'information', 'c\'est vrai')
+    });
+        // fonction confirm les parametres : texte, call back qui reprend en parametres le choix de réponse a la 'Question' récupérer par la variable result qui stock la valeur du confirm buton, un titre, les reponses sous forme de tableau)
+      document.querySelector('#confirm-btn').addEventListener('click', function(){
+        navigator.notification.confirm('Tu veux un truc?', function(choix){
+            let result = document.querySelector('#confirm-message');
+            switch(choix){
+                case 1:result.innerText ='oui je veux';
+                break;
+                case 2:result.innerText ='nope';
+                break;
+                case 3:result.innerText ='don\'t know';
+                break;
+            }
+        }, 'Question',['oui','non','Jme casse'])
+    });
+        //fonction prompt les paramètres : le texte, la call back comme pour confirm, le titre, la reponse
+document.querySelector('#prompt-btn').addEventListener('click', function(){
+    let result = document.querySelector('#prompt-message');
+
+    navigator.notification.prompt('qui es tu?', function(response){
+            if(response.buttonIndex ==1 && response.imput1 !=''){
+                result.innerText =`Hello ${response.input1}`
+            } 
+            else {result.innerText ="No Info"}}, 'Information',['Validate', 'Cancel'])
+    });
+});
+    </script>  
+    </head>
+    <body>
+        <div class="app">
+
+            <h1>Dialog</h1>
+
+            <p>
+            <a href="../index.html">i'll be back</a>
+            </p>
+
+            <section>
+            <button id="alert-btn" class="btn">Spoiler Alert</button>  
+                <hr/>
+            <button id="confirm-btn" class="btn">Confirm</button>   
+            <p id="confirm-message"></p>
+            <hr/>
+            <button id="prompt-btn" class="btn">prompt</button>   
+            <p id="prompt-message"></p>
+            </section>
+              
+
+         
+        </div>
+        <script type="text/javascript" src="../cordova.js"></script>
+     
+    </body>
+</html>
