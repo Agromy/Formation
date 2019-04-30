@@ -1,0 +1,38 @@
+<form (ngSubmit)="addTask()" #form="ngForm">
+   <!--on va créer une variable de formulaire pour pouvoir y faire référence dans sa globalité-->
+  <div>
+    <label for="create[name]">Name :</label>
+    <!--l'écriture avec le [(ngModel)] prend forcément ngModel car c'est un formulaire enrichi par angular-->
+    <input id="create[name]" name="name" [(ngModel)]="newTask.name" 
+    #inputName="ngModel" required pattern="[_0-9a-zA-Z -]*">
+    <!--le * du required pattern indique qu'on ne limite pas le nombre de caractère lors de la saisie-->
+    <p [hidden]="inputName.valid || inputName.untouched">Vous ne pouvez utiliser que des lettres, chiffres, underscore, tirets et espaces</p>
+    <!--on recupère la variable du chanp inpu et on lui rajoute la valeur true a la propriété hidden si la valeur est valide-->
+
+  </div>
+  <div>
+    <label for="create[deadLine]">Echeance :</label>
+    <input type="date" id="create[deadLine]" name="deadLine" [(ngModel)]="newTask.deadLine">
+  </div>
+  <div>
+    <label for="create[status]">Status :</label>
+    <select id="create[status]" name="status" [(ngModel)]="newTask.status">
+    <option value='Todo'> To Do</option>
+    <option value='Doing'> Currently running</option>
+    <option value='Done'> Done</option></select>
+  </div>
+  <div>
+    <label for="create[doer]">Doer :</label>
+    <input id="create[doer]" name="doer" [(ngModel)]="newTask.doer">
+  </div>
+  <div>
+    <label for="create[difficulty]">Difficulty :</label>
+    <input id="create[difficulty]" name="difficulty" [(ngModel)]="newTask.difficulty">
+  </div>
+  <button [disabled]="form.invalid">Create Task</button>
+  <!--ici on récupère l'attribut form de la variable formulaire créée plus haut a qui on rajoute la propriété invalid-->
+ 
+
+</form>
+<div>{{newTask | json}}</div>
+

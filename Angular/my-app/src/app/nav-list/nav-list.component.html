@@ -1,9 +1,11 @@
-<div>
+<div class="nav-list-Item">
     <h2>
       My ToDO list :
     </h2>
     <ul>
      <!--repete l'élément li pour chaque élément du tableau tasks--> 
-      <li *ngFor="let task of tasks">{{task.name}}</li>
+      <li *ngFor="let task of taskList" (click)="select(task)">{{task.name}}</li>
+      <!--on ajoute un évènement directement sur l'élément de la list : le () = "nom de la fonction (ici select)" 
+        est l'equivalent du addEventListener --> 
     </ul>
   </div>

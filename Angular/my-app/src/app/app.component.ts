@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Task, Task2, TaskStatus} from './task'
+import {Task, TaskStatus} from './task'
 
 @Component({
   selector: 'app-root',
@@ -7,7 +7,7 @@ import {Task, Task2, TaskStatus} from './task'
   styleUrls: ['./app.component.scss']
 })
 
-/* mon composant appComponent a un attribu/propiété : title dont la valeur est une chaine de caractere
+/* mon composant appComponent a un attribu/propiété : name dont la valeur est une chaine de caractere
 */
 export class AppComponent {
  
@@ -15,14 +15,17 @@ export class AppComponent {
    { 
     name : 'Learn Angular',
     status : TaskStatus.Doing,
-    deadLine: new Date ('2019-05-28')
+    deadLine: new Date ('2019-05-28'),
+    doer : 'Agromy',
+    difficulty : "bla"
   },
 
   {
     name : 'learn Angular 2',
     status : TaskStatus.ToDo,
     deadLine: new Date ('2019-05-28'),
-    doer: 'Agromy'
+    doer: 'Agromy',
+    difficulty : "hard"
   },
 
   {
@@ -36,6 +39,20 @@ export class AppComponent {
 
   currentTask = this.tasks[1]
 
+  afficheDetail(task : Task){
+  console.log('j\'ai récupéré ma tache', task);
+  this.currentTask = task;
+
+  }
+
+  addTaskToList(task : Task){
+    this.tasks.unshift(task);
+    this.currentTask = task
+/*unshift est egale a push*/
+  }
+
+
 }
+
 
 

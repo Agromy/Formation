@@ -9,17 +9,12 @@ export class Task {
   name: string;
   status: TaskStatus;
   deadLine: Date;
+  difficulty : string;
+  
+
+  constructor(public doer:string){}
 }
 
-
-
-export class Task2 {
-    name: string;
-    status: TaskStatus;
-    deadLine: Date;
-  
-    constructor(public doer:string){}
-  }
 /*rajout d'une propriété au moment ou on utilise le consturctor
 
 // pas besoin de constructeur ici sous angular 

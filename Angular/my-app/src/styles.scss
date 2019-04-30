@@ -1,1 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
+$mainColor: rgba(59, 57, 57, 0.788);
+
+$fontStyle: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+@mixin font(){
+    color: whitesmoke;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+};
+
+body{
+    background-color: $mainColor;
+};
+
+header{
+    $mainColor: rgba(59, 57, 57, 0.788);
+};
+
+footer{
+    $mainColor: rgba(59, 57, 57, 0.788);
+};
+
+h1{
+    @include font();
+    font-size: 300%;
+     text-align: center;
+    
+}
+
+
+h2{
+    @include font();
+    border-bottom: 2px solid black;
+   
+}
+
+.app-root-Item{
+   color:whitesmoke;
+   display: flex;
+   justify-content: space-around;
+  
+}
+

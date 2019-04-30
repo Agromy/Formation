@@ -1,0 +1,14 @@
+
+  <div class="detail-Item">
+      <h2>
+        Task Detail : {{currentTask.name}}
+      </h2>
+      
+      <ul>
+        <li>{{currentTask?.name}}</li>
+        <li>{{currentTask?.status}}</li>
+        <li>{{currentTask?.deadLine | date: "dd/MM/yyyy"}}</li>
+        <li>{{currentTask?.doer}}</li>
+        <li>{{currentTask?.difficulty}}</li>
+      </ul>
+      </div>
