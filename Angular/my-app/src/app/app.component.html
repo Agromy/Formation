@@ -1,11 +1,7 @@
-<app-create (taskCreated)="addTaskToList($event)"></app-create>
+<app-create></app-create>
+<app-nav-list></app-nav-list>
 
-<app-nav-list id="app-nav-list" class="appComponent-Item" [taskList]="tasks" (taskSelected)="afficheDetail($event)"></app-nav-list>
-<!--L'écouteur est posé sur taskSelected et pour récupérer la donnée émise (le emit) de l'évènnement il faut obligatoirement mettre $event en parametre de la fonction qu'on code)-->
-<img src="">
+<app-detail></app-detail>
 
-<app-detail class="appComponent-Item" [currentTask]="currentTask"></app-detail>
-<!--la propriétée currentTask de app-detail viens de detail.components.ts ou elle a étée créer
-C'est app.component qui appelle detail.component.ts via la balise app-detail créée dans detail.component.ts-->
 
 

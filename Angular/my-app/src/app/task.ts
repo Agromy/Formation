@@ -1,7 +1,7 @@
 export enum TaskStatus {
-    ToDo = 'Postpone please',
-    Doing = 'Today i work',
-    Done = 'Done baby'
+    ToDo,
+    Doing,
+    Done 
 }
 // enum c'est que dans typescript (les fontion/methode prédéfinies)
 

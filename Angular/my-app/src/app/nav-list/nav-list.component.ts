@@ -1,5 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import {Task, TaskStatus} from '../task'
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import {Task} from '../task'
+import {TaskProviderService} from '../task-provider.service';
+import {DetailProviderService} from '../detail-provider.service'
 
 
 
@@ -10,21 +12,24 @@ import {Task, TaskStatus} from '../task'
 })
 export class NavListComponent implements OnInit {
 /*Input va servir a mettre la propriété taskList dans la nouvelle balise HTML app nav list du selector de Component*/ 
- @Input() taskList: Array<Task>;
+ taskList: Array<Task>;
 
- /*Output va servir à transmettre une donnée au parent via task selected qui est le nom de l'évennement que j'ai créé 
- grace a new EventEmitter (outil de angular) : donc ici on fabrique un nouvel evennement. Par ailleurs, <Task> est le typage de ce nouvel evenement.
- */
- @Output() taskSelected = new EventEmitter<Task>();
+ 
 
-  constructor() { }
+ constructor (
+   private provider : TaskProviderService,
+   private current: DetailProviderService,
+ ){}
 
-  ngOnInit() {
-  }
+ ngOnInit(): void{
+  this.provider.getTasks().subscribe(tasks => this.taskList=tasks);
+}
+/* on met dans le constructeur la classe TaskProviderService qui récupère via la méthode get l'objet Array<Task> du json task.json* par son URL*/
 
   select(task){
     console.log('j\'ai cliqué sur nav list',task);
-    this.taskSelected.emit(task);
+    this.current.afficheDetail(task);
   }
 
 }
+

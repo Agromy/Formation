@@ -1,0 +1,26 @@
+
+[ 
+    { 
+    "name": "Learn Angular",
+     "status": 1,
+     "deadLine": "2019-05-28",
+     "doer" : "Agromy",
+     "difficulty" : "bla"
+   },
+  
+   {
+     "name" : "Learn Angular 2",
+    "status" : 2,
+     "deadLine": "2019-05-28",
+    "doer": "Agromy",
+     "difficulty" : "hard"
+   },
+  
+   {
+    "name" : "Learn Angular 3",
+    "status" : 3,
+     "deadLine": "2019-05-28",
+    "doer": "Agromy",
+     "difficulty" : "extrem"
+   }
+]

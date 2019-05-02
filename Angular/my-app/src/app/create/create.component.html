@@ -1,13 +1,14 @@
-<form (ngSubmit)="addTask()" #form="ngForm">
+<form (ngSubmit)="addTask(); form.reset()" #form="ngForm">
    <!--on va créer une variable de formulaire pour pouvoir y faire référence dans sa globalité-->
   <div>
     <label for="create[name]">Name :</label>
     <!--l'écriture avec le [(ngModel)] prend forcément ngModel car c'est un formulaire enrichi par angular-->
     <input id="create[name]" name="name" [(ngModel)]="newTask.name" 
     #inputName="ngModel" required pattern="[_0-9a-zA-Z -]*">
-    <!--le * du required pattern indique qu'on ne limite pas le nombre de caractère lors de la saisie-->
+    <!--le * du required pattern indique qu'on ne limite pas le nombre de caractère lors de la saisie. Pour choisir un nombre de char {8,} 8 ou plus-->
     <p [hidden]="inputName.valid || inputName.untouched">Vous ne pouvez utiliser que des lettres, chiffres, underscore, tirets et espaces</p>
-    <!--on recupère la variable du chanp inpu et on lui rajoute la valeur true a la propriété hidden si la valeur est valide-->
+    <!--on recupère la variable du champ input et on lui rajoute la valeur true a la propriété hidden si la valeur est valide et vierge
+    le .valid et .untouched sont des classes qui se rajoutent automatiquement-->
 
   </div>
   <div>
